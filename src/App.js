@@ -1,14 +1,14 @@
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import Home from "./Pages/Home";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Hello Mendel
-        </h1>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+          <Home />
+      </div>
+    </BrowserRouter>
   );
 }
 
