@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/hello">
+        <Route exact path="/hello">
           <div>hello</div>
         </Route>
         <Route path="/" component={Home} />
