@@ -43,6 +43,7 @@
   font-weight: 400;
   font-size: 25px;
   color: #000000;
+  width: 100%;
 }
 
 .find-sitter-button {
@@ -57,6 +58,8 @@
 /* 
 === DESIGN
  */
+
+
 
 .header {
   display: flex;
@@ -75,7 +78,13 @@
 .dropdown {
   background-color: white;
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 0 10px 10px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.react-datepicker-wrapper {
+  justify-self: stretch;
 }
 
 .find-sitter-button {
