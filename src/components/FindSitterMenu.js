@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import { Link } from "react-router-dom";
 import DownArrow from "../assets/Icons/DownArrow";
 import RightArrow from "../assets/Icons/RightArrow";
 
 const FindSitterMenu = () => {
-  const addAnHour = () => {
+  const addAnHour = (date) => {
     const d = new Date();
-    return d.setHours(d.getHours() + 1);
+    return d.setMinutes(date.getMinutes() + 60);
   };
 
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(addAnHour());
+  const [endTime, setEndTime] = useState(addAnHour(startTime));
+
 
   const DateCustomInput = ({ value, onClick }) => {
     const todayString = new Date().toLocaleDateString();
@@ -23,11 +25,19 @@ const FindSitterMenu = () => {
     );
   };
 
-  const TimeCustomInput = ({ value, onClick }) => (
+  const StartTimeCustomInput = ({ value, onClick }) => (
     <div className="dropdown dropdown-time" onClick={onClick}>
       {value} <DownArrow />
     </div>
   );
+
+  const EndTimeCustomInput = ({ value, onClick }) => {
+    return (
+      <div className="dropdown dropdown-time" onClick={onClick}>
+        {value} <DownArrow />
+      </div>
+    );
+  };
 
   return (
     <form className="background-blur find-sitter-menu">
@@ -37,7 +47,7 @@ const FindSitterMenu = () => {
           dateFormat="MM/d/yyyy"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          popperPlacement="bottom"
+          popperPlacement="bottom-end"
           customInput={<DateCustomInput />}
         />
       </div>
@@ -52,7 +62,7 @@ const FindSitterMenu = () => {
             showTimeSelectOnly
             timeIntervals={15}
             dateFormat="h:mm aa"
-            customInput={<TimeCustomInput />}
+            customInput={<StartTimeCustomInput />}
           />
           <hr />
           <DatePicker
@@ -62,17 +72,19 @@ const FindSitterMenu = () => {
             showTimeSelectOnly
             timeIntervals={15}
             dateFormat="h:mm aa"
-            customInput={<TimeCustomInput />}
+            customInput={<EndTimeCustomInput />}
           />
         </div>
       </div>
 
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
-        <div className="find-sitter-button">
-          Find Sitters
-          <RightArrow />
-        </div>
+        <Link to="/availabilities">
+          <div className="find-sitter-button">
+            Find Sitters
+            <RightArrow />
+          </div>
+        </Link>
       </div>
     </form>
   );
