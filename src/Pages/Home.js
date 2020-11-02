@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import FindSitterMenu from "../components/FindSitterMenu";
 import Header from "../components/Header";
-import "./Home.css";
 
 const Home = () => {
   return (
     <div className="home">
       <div class="opaque">
         <Header />
-        <h1>Hello Mendel!</h1>
-        <Link to="/hello">Hello</Link>
+        <h1 className="home-message">Find <br/> a Sitter</h1>
+        <FindSitterMenu />
       </div>
     </div>
   );

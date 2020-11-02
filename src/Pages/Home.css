@@ -1,13 +1,2 @@
-.home {
-  background-image: url(../assets/grass.jpg);
-  background-size: cover;
-}
 
-.opaque {
-  background:rgba(255,255,255, 0.4);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 

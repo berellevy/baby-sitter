@@ -1,12 +1,87 @@
-header {
-  height: 48px;
-  width: 95%;
-  display: block;
-  margin: .5em;
-  
+/* 
+=== LAYOUT
+*/
+
+.home {
+  background-image: url(./assets/grass_kid_faded.jpeg);
+  background-size: cover;
+}
+
+.opaque {
+  background: rgba(255, 255, 255, 0.2);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* 
+=== TYPOGRAPHY
+*/
+
+.header {
+  font-family: "Helvetica Neue", Regular;
+  font-size: 14px;
+}
+
+.home-message {
+  font-size: 80px;
+  font-family: "Helvetica Neue", Bold;
+  align-self: baseline;
+}
+
+.find-sitter-menu {
+  font-family: "Helvetica Neue";
+  font-weight: 700;
+  font-size: 14px;
+  color: #707070;
+}
+
+.dropdown {
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  font-size: 25px;
+  color: #000000;
+}
+
+.find-sitter-button {
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  font-size: 25px;
+  color: white;
+}
+
+
+
+/* 
+=== DESIGN
+ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .background-blur {
-  background:rgba(255,255,255, 0);
+  padding: 17px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(30px) brightness(115%);
+  align-self: stretch;
+}
+
+.dropdown {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.find-sitter-button {
+  background-color: black;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
