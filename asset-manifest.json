@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/baby-sitter/static/css/main.f8d74f57.chunk.css",
-    "main.js": "/baby-sitter/static/js/main.bdd5535d.chunk.js",
-    "main.js.map": "/baby-sitter/static/js/main.bdd5535d.chunk.js.map",
-    "runtime-main.js": "/baby-sitter/static/js/runtime-main.71112f0a.js",
-    "runtime-main.js.map": "/baby-sitter/static/js/runtime-main.71112f0a.js.map",
+    "main.css": "/baby-sitter/static/css/main.e25a0945.chunk.css",
+    "main.js": "/baby-sitter/static/js/main.61846225.chunk.js",
+    "main.js.map": "/baby-sitter/static/js/main.61846225.chunk.js.map",
+    "runtime-main.js": "/baby-sitter/static/js/runtime-main.4754421d.js",
+    "runtime-main.js.map": "/baby-sitter/static/js/runtime-main.4754421d.js.map",
     "static/css/2.95456d05.chunk.css": "/baby-sitter/static/css/2.95456d05.chunk.css",
-    "static/js/2.31be64b5.chunk.js": "/baby-sitter/static/js/2.31be64b5.chunk.js",
-    "static/js/2.31be64b5.chunk.js.map": "/baby-sitter/static/js/2.31be64b5.chunk.js.map",
-    "static/js/3.d7c1f37c.chunk.js": "/baby-sitter/static/js/3.d7c1f37c.chunk.js",
-    "static/js/3.d7c1f37c.chunk.js.map": "/baby-sitter/static/js/3.d7c1f37c.chunk.js.map",
+    "static/js/2.df4a2c05.chunk.js": "/baby-sitter/static/js/2.df4a2c05.chunk.js",
+    "static/js/2.df4a2c05.chunk.js.map": "/baby-sitter/static/js/2.df4a2c05.chunk.js.map",
+    "static/js/3.9c6f9833.chunk.js": "/baby-sitter/static/js/3.9c6f9833.chunk.js",
+    "static/js/3.9c6f9833.chunk.js.map": "/baby-sitter/static/js/3.9c6f9833.chunk.js.map",
     "index.html": "/baby-sitter/index.html",
     "static/css/2.95456d05.chunk.css.map": "/baby-sitter/static/css/2.95456d05.chunk.css.map",
-    "static/css/main.f8d74f57.chunk.css.map": "/baby-sitter/static/css/main.f8d74f57.chunk.css.map",
-    "static/js/2.31be64b5.chunk.js.LICENSE.txt": "/baby-sitter/static/js/2.31be64b5.chunk.js.LICENSE.txt",
+    "static/css/main.e25a0945.chunk.css.map": "/baby-sitter/static/css/main.e25a0945.chunk.css.map",
+    "static/js/2.df4a2c05.chunk.js.LICENSE.txt": "/baby-sitter/static/js/2.df4a2c05.chunk.js.LICENSE.txt",
     "static/media/App.css": "/baby-sitter/static/media/grass_kid_faded.a817a676.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.71112f0a.js",
+    "static/js/runtime-main.4754421d.js",
     "static/css/2.95456d05.chunk.css",
-    "static/js/2.31be64b5.chunk.js",
-    "static/css/main.f8d74f57.chunk.css",
-    "static/js/main.bdd5535d.chunk.js"
+    "static/js/2.df4a2c05.chunk.js",
+    "static/css/main.e25a0945.chunk.css",
+    "static/js/main.61846225.chunk.js"
   ]
 }
