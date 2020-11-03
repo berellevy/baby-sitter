@@ -1,4 +1,4 @@
-import { right } from "@popperjs/core";
+
 import React from "react";
 
 const RightArrow = () => {

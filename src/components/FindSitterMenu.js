@@ -5,14 +5,17 @@ import DownArrow from "../assets/Icons/DownArrow";
 import RightArrow from "../assets/Icons/RightArrow";
 
 const FindSitterMenu = () => {
-  const addAnHour = (date) => {
-    const d = new Date();
-    return d.setMinutes(date.getMinutes() + 60);
-  };
+  // TODO: Add validation to not allow less than an hour period
 
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(addAnHour(startTime));
+  const [endTime, setEndTime] = useState(new Date());
+
+  const hAndM = (date) => {
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    return `${hours}:${minutes}`
+  }
 
 
   const DateCustomInput = ({ value, onClick }) => {
@@ -80,7 +83,7 @@ const FindSitterMenu = () => {
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
         <Link to="/availabilities">
-          <Link to="/availabilities?day=day&from=from&to=to" className="find-sitter-button">
+          <Link to={`/availabilities/?day=${startDate.toLocaleDateString('en-US')}&from=${hAndM(startTime)}&to=${hAndM(endTime)}`} className="find-sitter-button">
             Find Sitters
             <RightArrow />
           </Link>
