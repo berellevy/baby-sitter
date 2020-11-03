@@ -80,10 +80,10 @@ const FindSitterMenu = () => {
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
         <Link to="/availabilities">
-          <div className="find-sitter-button">
+          <Link to="/availabilities?day=day&from=from&to=to" className="find-sitter-button">
             Find Sitters
             <RightArrow />
-          </div>
+          </Link>
         </Link>
       </div>
     </form>
