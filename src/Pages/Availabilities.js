@@ -10,15 +10,13 @@ const Availabilities = ({ location: { search } }) => {
     const fetchSitters = async () => {
       const results = await fetch("https://babysitter-mendel.herokuapp.com/api/v1/sitters")
       const data = await results.json()
-      console.log(data);
+      console.log({data});
       setData(data)
     }
     fetchSitters()
   },[])
 
-  const sittersList = () => data.map(({name}) => <li>{name}</li>)
-  
-  console.log(qs.parse(search, { ignoreQueryPrefix: true }));
+  const sittersList = () => data && data.map(({name}) => <li>{name}</li>)
   return (
     <div>
       <h1>Availabilities</h1>
