@@ -6,11 +6,10 @@ import { BackendDomain } from "../utils/urls";
 
 
 const Availabilities = ({ location: { search }, history}) => {
-  console.log(BackendDomain("sitters"))
   const [sitterInfo, setSitterInfo] = useState(null)
   useEffect( () => {
     const fetchSitters = async () => {
-      const results = await fetch("https://babysitter-mendel.herokuapp.com/api/v1/sitters")
+      const results = await fetch(BackendDomain("sitters"))
       const sitterInfo = await results.json()
       setSitterInfo(sitterInfo)
     }
