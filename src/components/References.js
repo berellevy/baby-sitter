@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const References = ({references}) => {
+const References = ({ references }) => {
+  console.log(references);
+
+  const refList = references.map(({ name, phone }) => {
+    return (
+      <div>
+        <div>{name}</div>
+        <div>{phone}</div>
+      </div>
+    );
+  });
   return (
-    <div>
-      References
-    </div>
-  );
-}
+    <>
+      {refList}
+    </>
+  )
+};
 
 export default References;

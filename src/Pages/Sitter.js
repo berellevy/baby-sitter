@@ -28,7 +28,9 @@ const Sitter = ({ match, history }) => {
       name,
       years_of_experience,
       price,
-    } = sitter && sitter;
+      references
+    } = sitter
+    console.log(references);
 
     return (
       <div className="container">
@@ -63,7 +65,7 @@ const Sitter = ({ match, history }) => {
         */}
         <div>
           References
-          <References />
+          <References references={references}/>
         </div>
       </div>
     );
