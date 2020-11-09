@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
-import qs from 'qs'
+import BackButton from "../components/BackButton";
+import Header from "../components/Header";
+import Li from "../components/Li";
+import { BackendDomain } from "../utils/urls";
 
 
-const Availabilities = ({ location: { search } }) => {
-
-  const [data, setData] = useState(null)
-
+const Availabilities = ({ location: { search }, history}) => {
+  console.log(BackendDomain("sitters"))
+  const [sitterInfo, setSitterInfo] = useState(null)
   useEffect( () => {
     const fetchSitters = async () => {
       const results = await fetch("https://babysitter-mendel.herokuapp.com/api/v1/sitters")
-      const data = await results.json()
-      console.log({data});
-      setData(data)
+      const sitterInfo = await results.json()
+      setSitterInfo(sitterInfo)
     }
     fetchSitters()
   },[])
 
-  const sittersList = () => data && data.map(({name}) => <li>{name}</li>)
+
+  const sittersList = () => sitterInfo && sitterInfo.map(data => <Li data={data}/>)
   return (
-    <div>
-      <h1>Availabilities</h1>
+    <div className="container">
+      <Header />
+      <BackButton history={history}/>
+      {/* time period */}
+      <h1>Jul 18 6-8:30pm</h1>
       <ul>
         {sittersList()}
       </ul>

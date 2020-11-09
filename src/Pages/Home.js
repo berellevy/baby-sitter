@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div class="opaque">
+      <div className="opaque">
         <Header />
         <h1 className="home-message">
           Find <br /> a Sitter

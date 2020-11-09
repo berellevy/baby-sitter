@@ -12,11 +12,10 @@ const FindSitterMenu = () => {
   const [endTime, setEndTime] = useState(new Date());
 
   const hAndM = (date) => {
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    return `${hours}:${minutes}`
-  }
-
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hours}:${minutes}`;
+  };
 
   const DateCustomInput = ({ value, onClick }) => {
     const todayString = new Date().toLocaleDateString();
@@ -82,11 +81,14 @@ const FindSitterMenu = () => {
 
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
-        <Link to="/availabilities">
-          <Link to={`/availabilities/?day=${startDate.toLocaleDateString('en-US')}&from=${hAndM(startTime)}&to=${hAndM(endTime)}`} className="find-sitter-button">
-            Find Sitters
-            <RightArrow />
-          </Link>
+        <Link
+          to={`/availabilities/?day=${startDate.toLocaleDateString(
+            "en-US"
+          )}&from=${hAndM(startTime)}&to=${hAndM(endTime)}`}
+          className="find-sitter-button"
+        >
+          Find Sitters
+          <RightArrow />
         </Link>
       </div>
     </form>
