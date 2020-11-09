@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Header from "../components/Header";
+import References from "../components/References";
 import { BackendDomain } from "../utils/urls";
 
 const Sitter = ({ match, history }) => {
@@ -26,6 +27,7 @@ const Sitter = ({ match, history }) => {
       contact_relation,
       name,
       years_of_experience,
+      price,
     } = sitter && sitter;
 
     return (
@@ -34,23 +36,35 @@ const Sitter = ({ match, history }) => {
         <BackButton history={history} />
         <h1>{name}</h1>
         {/* sitter contact name and relation */}
-        <form className="find-sitter-menu background-blur">
-        <div className="find-sitter-menu-section">
-          <label className="find-sitter-menu-label">
-            {contact_name} ({name}'s {contact_relation})
-          </label>
-          {/* call button */}
-          <Link to={`tel:${contact_phone}`} className="find-sitter-button">
-            Call {contact_phone}
-          </Link>
+        <div className="find-sitter-menu background-blur">
+          <div className="find-sitter-menu-section">
+            <label className="find-sitter-menu-label">
+              {contact_name} ({name}'s {contact_relation})
+            </label>
+            {/* call button */}
+            <Link href={`tel:${contact_phone}`} className="find-sitter-button">
+              Call {contact_phone}
+            </Link>
+          </div>
         </div>
-        </form>
-        {/* price - Age */}
-        {/* experience */}
-        {/* bio */}
+        
+        <div> {/* flex wrap */} 
+          <div>${price}</div>
+          <div>Age: {age}</div>
+          <div>Babysitting: {years_of_experience}</div>
+        </div>
+
+        <div>
+          Bio
+          <p>{bio}</p>
+        </div>
         {/* references:
           name, number
         */}
+        <div>
+          References
+          <References />
+        </div>
       </div>
     );
   } else {
