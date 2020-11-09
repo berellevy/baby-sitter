@@ -42,11 +42,12 @@ ul {
   padding-left: 0;
 }
 
-li {
+li a {
   display: flex;
   justify-content: space-between;
   border-bottom: 0.3px solid #707070;
   padding-bottom: 10px;
+  color: inherit;
 }
 
 
