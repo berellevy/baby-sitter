@@ -6,14 +6,16 @@ import { BackendDomain } from "../utils/urls";
 
 const Availabilities = ({ location: { search }, history }) => {
   const [sitterInfo, setSitterInfo] = useState(null);
+
   useEffect(() => {
     const fetchSitters = async () => {
-      const results = await fetch(BackendDomain("sitters"));
+      const results = await fetch(BackendDomain("sitters" + search));
       const sitterInfo = await results.json();
       setSitterInfo(sitterInfo);
     };
     fetchSitters();
-  }, []);
+  },[search]);
+
 
   const sittersList = () =>
     sitterInfo && sitterInfo.map((data) => <Li key={data.id} data={data} />);
