@@ -1,45 +1,35 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import { DateCustomInput, formatDate, formatHM, TimeCustomInput, roundToQuarterHour } from "../utils/DateTime"
 import { Link } from "react-router-dom";
-import DownArrow from "../assets/Icons/DownArrow";
 import RightArrow from "../assets/Icons/RightArrow";
 
 const FindSitterMenu = () => {
   // TODO: Add validation to not allow less than an hour period
 
+  const addHour = (time) => {
+    return time.setMinutes(time.getMinutes() + 60)
+  }
+
   const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [startTime, setStartTime] = useState(roundToQuarterHour(new Date()));
+  const [endTime, setEndTime] = useState(roundToQuarterHour(addHour(new Date())));
 
-  const hAndM = (date) => {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    return `${hours}:${minutes}`;
-  };
+  const lessThanHour = (startTime, endTime) => (endTime.getTime() - startTime.getTime()) / 60000 < 60
 
-  const DateCustomInput = ({ value, onClick }) => {
-    const todayString = new Date().toLocaleDateString();
-    const customValue = value === todayString ? "Today" : value;
-    return (
-      <div className="dropdown" onClick={onClick}>
-        {customValue} <DownArrow />
-      </div>
-    );
-  };
+  const validateHour = (startDate, startTime, endTime) => {
+    if (lessThanHour(startTime, endTime)) {
+      return "#"
+    } else {
+      return `/availabilities/?day=${formatDate(startDate)}&from=${formatHM(startTime)}&to=${formatHM(endTime)}`
+    }
+  }
 
-  const StartTimeCustomInput = ({ value, onClick }) => (
-    <div className="dropdown dropdown-time" onClick={onClick}>
-      {value} <DownArrow />
-    </div>
-  );
-
-  const EndTimeCustomInput = ({ value, onClick }) => {
-    return (
-      <div className="dropdown dropdown-time" onClick={onClick}>
-        {value} <DownArrow />
-      </div>
-    );
-  };
+  const invalidTime = (startTime, endTime) => (
+    lessThanHour(startTime, endTime)
+      ? "invalid-time"
+      : ""
+  )
 
   return (
     <form className="background-blur find-sitter-menu">
@@ -64,7 +54,7 @@ const FindSitterMenu = () => {
             showTimeSelectOnly
             timeIntervals={15}
             dateFormat="h:mm aa"
-            customInput={<StartTimeCustomInput />}
+            customInput={<TimeCustomInput />}
           />
           <hr />
           <DatePicker
@@ -74,7 +64,7 @@ const FindSitterMenu = () => {
             showTimeSelectOnly
             timeIntervals={15}
             dateFormat="h:mm aa"
-            customInput={<EndTimeCustomInput />}
+            customInput={<TimeCustomInput invalidTime={invalidTime(startTime, endTime)}/>}
           />
         </div>
       </div>
@@ -82,9 +72,7 @@ const FindSitterMenu = () => {
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
         <Link
-          to={`/availabilities/?day=${startDate.toLocaleDateString(
-            "en-US"
-          )}&from=${hAndM(startTime)}&to=${hAndM(endTime)}`}
+          to={validateHour(startDate, startTime, endTime)}
           className="find-sitter-button"
         >
           Find Sitters

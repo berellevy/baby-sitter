@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Header from "../components/Header";
 import References from "../components/References";
@@ -16,7 +15,7 @@ const Sitter = ({ match, history }) => {
       setSitter(data);
     };
     fetchSitters();
-  }, []);
+  });
 
   if (sitter) {
     const {
@@ -44,9 +43,9 @@ const Sitter = ({ match, history }) => {
               {contact_name} ({name}'s {contact_relation})
             </label>
             {/* call button */}
-            <Link href={`tel:${contact_phone}`} className="find-sitter-button">
-              Call {contact_phone}
-            </Link>
+            <a href={`tel:${contact_phone}`} className="find-sitter-button">
+              <span>Call</span> <span> {contact_phone}</span>
+            </a>
           </div>
         </div>
         

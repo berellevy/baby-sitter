@@ -116,7 +116,7 @@ h1 {
   background-color: white;
   border-radius: 8px;
   padding: 10px 14px;
-  border: none;
+  border: 1px solid white;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -171,4 +171,17 @@ a:link {
 
 .ml-auto {
   margin-left: auto;
+}
+
+.invalid-time {
+  border: .5px solid red;
+  box-sizing: border-box;
+}
+
+.invalid-time-message {
+  font-size: 60%;
+  color: red;
+  position: absolute;
+  left: 5%;
+  bottom: -40%;
 }
