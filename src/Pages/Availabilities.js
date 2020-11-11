@@ -17,6 +17,8 @@ const Availabilities = ({ location: { search }, history }) => {
     fetchSitters();
   }, [search]);
 
+  console.log(sittersList);
+
   return (
     <div className="container">
       <Header />

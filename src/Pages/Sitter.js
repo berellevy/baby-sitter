@@ -15,7 +15,7 @@ const Sitter = ({ match, history }) => {
       setSitter(data);
     };
     fetchSitters();
-  });
+  },[]);
 
   if (sitter) {
     const {
@@ -29,7 +29,6 @@ const Sitter = ({ match, history }) => {
       price,
       references
     } = sitter
-    console.log(references);
 
     return (
       <div className="container">
