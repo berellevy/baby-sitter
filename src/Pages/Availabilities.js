@@ -3,29 +3,26 @@ import BackButton from "../components/BackButton";
 import Header from "../components/Header";
 import Li from "../components/Li";
 import { BackendDomain } from "../utils/urls";
+import TimeHeader from "../components/TimeHeader";
 
 const Availabilities = ({ location: { search }, history }) => {
-  const [sitterInfo, setSitterInfo] = useState(null);
+  const [sittersList, setSittersList] = useState(null);
 
   useEffect(() => {
     const fetchSitters = async () => {
       const results = await fetch(BackendDomain("sitters" + search));
-      const sitterInfo = await results.json();
-      setSitterInfo(sitterInfo);
+      const sittersList = await results.json();
+      setSittersList(sittersList);
     };
     fetchSitters();
-  },[search]);
+  }, [search]);
 
-
-  const sittersList = () =>
-    sitterInfo && sitterInfo.map((data) => <Li key={data.id} data={data} />);
   return (
     <div className="container">
       <Header />
       <BackButton history={history} />
-      {/* time period */}
-      <h1>Jul 18 6-8:30pm</h1>
-      <ul>{sittersList()}</ul>
+      <TimeHeader search={search} />
+      <ul>{sittersList && sittersList.map((data) => <Li key={data.id} data={data} />)}</ul>
     </div>
   );
 };
