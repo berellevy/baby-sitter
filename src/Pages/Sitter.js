@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import Header from "../components/Header";
 import References from "../components/References";
+import SitterAppointments from "../components/SitterAppointments";
+import SitterAvailabilities from "../components/SitterAvailabilities";
 import { BackendDomain } from "../utils/urls";
+import Availabilities from "./Availabilities";
 
 const Sitter = ({ match, history }) => {
   const { id } = match.params;
@@ -29,8 +32,9 @@ const Sitter = ({ match, history }) => {
       years_of_experience,
       price,
       references,
+      availabilities,
+      appointments,
     } = sitter;
-
     return (
       <div className="container">
         <Header />
@@ -66,6 +70,18 @@ const Sitter = ({ match, history }) => {
         <div>
           References
           <References references={references} />
+        </div>
+        <div>
+          Availabilities
+          <ul>
+            <SitterAvailabilities availabilities={availabilities} />
+          </ul>
+        </div>
+        <div>
+          Appointments
+          <ul>
+            <SitterAppointments appointments={appointments} />
+          </ul>
         </div>
       </div>
     );
