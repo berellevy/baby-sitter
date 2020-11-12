@@ -15,7 +15,7 @@ const Sitter = ({ match, history }) => {
       setSitter(data);
     };
     fetchSitters();
-  },[]);
+  }, [id]);
 
   if (sitter) {
     const {
@@ -24,22 +24,25 @@ const Sitter = ({ match, history }) => {
       contact_name,
       contact_phone,
       contact_relation,
-      name,
+      first_name,
+      last_name,
       years_of_experience,
       price,
-      references
-    } = sitter
+      references,
+    } = sitter;
 
     return (
       <div className="container">
         <Header />
         <BackButton history={history} />
-        <h1>{name}</h1>
+        <h1>
+          {first_name} {last_name}
+        </h1>
         {/* sitter contact name and relation */}
         <div className="find-sitter-menu background-blur">
           <div className="find-sitter-menu-section">
             <label className="find-sitter-menu-label">
-              {contact_name} ({name}'s {contact_relation})
+              {contact_name} ({first_name}'s {contact_relation})
             </label>
             {/* call button */}
             <a href={`tel:${contact_phone}`} className="find-sitter-button">
@@ -47,8 +50,10 @@ const Sitter = ({ match, history }) => {
             </a>
           </div>
         </div>
-        
-        <div> {/* flex wrap */} 
+
+        <div>
+          {" "}
+          {/* flex wrap */}
           <div>${price}</div>
           <div>Age: {age}</div>
           <div>Babysitting: {years_of_experience}</div>
@@ -58,12 +63,9 @@ const Sitter = ({ match, history }) => {
           Bio
           <p>{bio}</p>
         </div>
-        {/* references:
-          name, number
-        */}
         <div>
           References
-          <References references={references}/>
+          <References references={references} />
         </div>
       </div>
     );

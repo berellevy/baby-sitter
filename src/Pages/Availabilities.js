@@ -17,14 +17,15 @@ const Availabilities = ({ location: { search }, history }) => {
     fetchSitters();
   }, [search]);
 
-  console.log(sittersList);
-
   return (
     <div className="container">
       <Header />
       <BackButton history={history} />
       <TimeHeader search={search} />
-      <ul>{sittersList && sittersList.map((data) => <Li key={data.id} data={data} />)}</ul>
+      <ul>
+        {sittersList &&
+          sittersList.map((data) => <Li key={data.id} data={data} />)}
+      </ul>
     </div>
   );
 };
