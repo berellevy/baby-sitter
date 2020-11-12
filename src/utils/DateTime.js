@@ -37,3 +37,15 @@ export const roundToQuarterHour = (date) => {
   const coeff = 1000 * 60 * 15
   return new Date(Math.round(date / coeff) * coeff)
 }
+
+export const numToDay = (num) => (
+  [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Shabbos"
+  ][num]
+)
