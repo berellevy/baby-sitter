@@ -5,7 +5,6 @@ import References from "../components/References";
 import SitterAppointments from "../components/SitterAppointments";
 import SitterAvailabilities from "../components/SitterAvailabilities";
 import { BackendDomain } from "../utils/urls";
-import Availabilities from "./Availabilities";
 
 const Sitter = ({ match, history }) => {
   const { id } = match.params;
