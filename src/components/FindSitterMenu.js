@@ -7,14 +7,23 @@ import DateDropdown from "./DateDropdown";
 import TimeDropdown from "./TimeDropdown";
 import {
   roundToQuarterHour,
-  endTimeOptionsFromDuration,
+  durationToOptions,
+  durationToEndTime,
+  formatDate,
+  formatHM,
 } from "../utils/DateTime";
 
 const FindSitterMenu = () => {
   const [startDate, setStartDate] = useState(roundToQuarterHour(new Date()));
   const [selection, setSelection] = useState(60);
 
-  const options = () => endTimeOptionsFromDuration(startDate, 60);
+  const options = () => durationToOptions(startDate, 60);
+
+  const queryLink = () => {
+    return `/availabilities/?day=${formatDate(startDate)}&startTime=${formatHM(startDate)}&duration=${selection}`
+  }
+
+  console.log(queryLink());
   return (
     <form className="background-blur find-sitter-menu">
       <DateDropdown startDate={startDate} setStartDate={setStartDate} />
@@ -29,7 +38,7 @@ const FindSitterMenu = () => {
 
       <div className="find-sitter-menu-section">
         <label className="find-sitter-menu-label">Sitters available</label>
-        <Link to={"nowhere"} className="find-sitter-button">
+        <Link to={queryLink()} className="find-sitter-button">
           Find Sitters
           <RightArrow />
         </Link>

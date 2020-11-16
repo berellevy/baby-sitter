@@ -23,8 +23,9 @@ const Availabilities = ({ location: { search }, history }) => {
       <BackButton history={history} />
       <TimeHeader search={search} />
       <ul>
-        {sittersList &&
-          sittersList.map((data) => <Li key={data.id} data={data} />)}
+        {sittersList 
+          ? sittersList.map((data) => <Li key={data.id} data={data} />)
+          : null}
       </ul>
     </div>
   );

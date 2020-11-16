@@ -2,8 +2,8 @@ import DownArrow from "../assets/Icons/DownArrow";
 import moment from "moment";
 
 export const formatHM = (date) => {
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const hours = new Date(date).getHours();
+  const minutes = new Date(date).getMinutes();
   return `${hours}:${minutes}`;
 };
 
@@ -35,22 +35,33 @@ export const roundToQuarterHour = (date) => {
   return new Date(Math.round(date / coeff) * coeff);
 };
 
-export const numToDay = (num) =>
-  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Shabbos"][
-    num
-  ];
+export const numToDay = (num) => {
+  return [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Shabbos",
+  ][num];
+};
 
-export const endTimeOptionsFromDuration = (startDate, duration) => {
+export const durationToEndTime = (startDate, duration) => {
+  return moment(startDate).add(duration, "m").format("h:mma");
+};
+
+export const durationToOptions = (startDate, duration) => {
   let timeList = [];
   for (let i = 0; i < 48; i++) {
     let increment = i * 15;
     timeList = [
-      ...timeList, 
+      ...timeList,
       {
         value: duration + increment,
-        label: moment(startDate).add((duration + increment), "m").format("h:mma")
-      }
+        label: durationToEndTime(startDate, duration + increment),
+      },
     ];
   }
-  return timeList
+  return timeList;
 };
