@@ -8,7 +8,7 @@ export const formatHM = (date) => {
 };
 
 export const formatDate = (date) => {
-  return date.toLocaleDateString("en-US").replace(/\//g, "-");
+  return moment(date).format("DD-MM-yy")
 };
 
 export const DateCustomInput = ({ value, onClick }) => {
@@ -48,7 +48,7 @@ export const numToDay = (num) => {
 };
 
 export const durationToEndTime = (startDate, duration) => {
-  return moment(startDate).add(duration, "m").format("h:mma");
+  return moment(startDate).add(duration, "m").format("LT");
 };
 
 export const durationToOptions = (startDate, duration) => {
