@@ -1,21 +1,22 @@
 import React from "react";
 import moment from "moment"
-import { numToDay } from "../utils/DateTime";
+import { durationToEndTime, numToDay } from "../utils/DateTime";
 
-const SitterAvailabilities = ({ availabilities }) => (
-  availabilities.map(({id, start_time, end_time, weekday }) => {
+const SitterAvailabilities = ({ availabilities }) => {
+  return availabilities.map(({id, start_time, duration_minutes, weekday }) => {
+    console.log({id, start_time, duration_minutes, weekday });
     return (
       <li key={id}>
        <span> {numToDay(weekday)}: </span>
-        <span>{moment(start_time).format("h:mma")}</span>
+        {moment.utc(start_time).format("LT")}
         {" - "}
-        <span>{moment(end_time).format("h:mma")}</span>
+        <span>{durationToEndTime(moment.utc(start_time), duration_minutes)}</span>
 
       </li>
     )
   }
 
   )
-)
+}
 
 export default SitterAvailabilities;
