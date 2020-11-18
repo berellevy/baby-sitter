@@ -8,7 +8,6 @@ import TimeDropdown from "./TimeDropdown";
 import {
   roundToQuarterHour,
   durationToOptions,
-  durationToEndTime,
   formatDate,
   formatHM,
 } from "../utils/DateTime";
@@ -22,8 +21,7 @@ const FindSitterMenu = () => {
   const queryLink = () => {
     return `/availabilities/?day=${formatDate(startDate)}&startTime=${formatHM(startDate)}&duration=${selection}`
   }
-
-  console.log(queryLink());
+  
   return (
     <form className="background-blur find-sitter-menu">
       <DateDropdown startDate={startDate} setStartDate={setStartDate} />
