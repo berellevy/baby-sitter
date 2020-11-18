@@ -4,7 +4,6 @@ import { durationToEndTime, numToDay } from "../utils/DateTime";
 
 const SitterAvailabilities = ({ availabilities }) => {
   return availabilities.map(({id, start_time, duration_minutes, weekday }) => {
-    console.log({id, start_time, duration_minutes, weekday });
     return (
       <li key={id}>
        <span> {numToDay(weekday)}: </span>
