@@ -47,8 +47,8 @@ export const numToDay = (num) => {
   ][num];
 };
 
-export const durationToEndTime = (startDate, duration) => {
-  return moment(startDate).add(duration, "m").format("LT");
+export const durationToEndTime = (startDate, duration, format = "LT") => {
+  return moment(startDate).add(duration, "m").format(format);
 };
 
 export const durationToOptions = (startDate, duration) => {
