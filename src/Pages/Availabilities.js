@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import Header from "../components/Header";
-import Li from "../components/Li";
 import { BackendDomain } from "../utils/urls";
 import TimeHeader from "../components/TimeHeader";
+import UrlProvider from "../components/UrlProvider";
+import LiUnderline from "../components/LiUnderline";
+import SplitColumn from "../components/SplitColumn";
 
 const Availabilities = ({ location: { search }, history }) => {
-  const [sittersList, setSittersList] = useState(null);
-
-  useEffect(() => {
-    const fetchSitters = async () => {
-      const results = await fetch(BackendDomain("sitters" + search));
-      const sittersList = await results.json();
-      setSittersList(sittersList);
-    };
-    fetchSitters();
-  }, [search]);
-
   return (
     <div className="container">
-      <Header />
-      <BackButton history={history} />
-      <TimeHeader search={search} />
-      <ul>
-        {sittersList 
-          ? sittersList.map((data) => <Li key={data.id} data={data} />)
-          : null}
-      </ul>
+      <Header classes="background-light-gray" />
+      <div className="container">
+        <BackButton history={history} />
+        <TimeHeader search={search} />
+        <UrlProvider
+          url={BackendDomain("sitters" + search)}
+          render={(data) => {
+            return (
+              <LiUnderline key={data.id} url={`/sitters/${data.id}`}>
+                <SplitColumn
+                  left={
+                    <p>
+                      {data.first_name} {data.last_name},
+                      <br />
+                      Age: {data.age}
+                    </p>
+                  }
+                  right={<p>Price: {data.price}</p>}
+                />
+              </LiUnderline>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };
