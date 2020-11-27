@@ -3,6 +3,7 @@ import BackButton from "../components/BackButton";
 import BorderBox from "../components/BorderBox";
 import DataProvider from "../components/DataProvider";
 import Header from "../components/Header";
+import Phone from "../components/Phone";
 import SitterAppointments from "../components/SitterAppointments";
 import SitterAvailabilities from "../components/SitterAvailabilities";
 import SplitColumn from "../components/SplitColumn";
@@ -74,7 +75,7 @@ const Sitter = ({ match, history }) => {
                 <li key={data.id}>
                   <SplitColumn
                     left={<span>{data.name}</span>}
-                    right={<span>{data.phone}</span>}
+                    right={<Phone num={data.phone} />}
                   />
                 </li>
               );
