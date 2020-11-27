@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
+import BorderBox from "../components/BorderBox";
+import DataProvider from "../components/DataProvider";
 import Header from "../components/Header";
-import References from "../components/References";
 import SitterAppointments from "../components/SitterAppointments";
 import SitterAvailabilities from "../components/SitterAvailabilities";
+import SplitColumn from "../components/SplitColumn";
+import TwoColContainer from "../components/TwoColContainer";
 import { BackendDomain } from "../utils/urls";
 
 const Sitter = ({ match, history }) => {
@@ -54,22 +57,31 @@ const Sitter = ({ match, history }) => {
           </div>
         </div>
 
-        <div>
-          {" "}
+        <TwoColContainer>
           {/* flex wrap */}
-          <div>${price}</div>
-          <div>Age: {age}</div>
-          <div>Babysitting: {years_of_experience}</div>
-        </div>
 
-        <div>
-          Bio
-          <p>{bio}</p>
-        </div>
-        <div>
-          References
-          <References references={references} />
-        </div>
+          <BorderBox>${price}</BorderBox>
+          <BorderBox>Age: {age}</BorderBox>
+          <BorderBox>Babysitting: {years_of_experience}</BorderBox>
+        </TwoColContainer>
+        <BorderBox>{bio}</BorderBox>
+
+        <BorderBox>
+          <DataProvider
+            data={references}
+            render={(data) => {
+              return (
+                <li key={data.id}>
+                  <SplitColumn
+                    left={<span>{data.name}</span>}
+                    right={<span>{data.phone}</span>}
+                  />
+                </li>
+              );
+            }}
+          />
+        </BorderBox>
+
         <div>
           Availabilities
           <ul>
