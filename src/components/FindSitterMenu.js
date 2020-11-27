@@ -23,7 +23,7 @@ const FindSitterMenu = () => {
   }
   
   return (
-    <form className="background-blur find-sitter-menu">
+    <form className="find-sitter-menu background-blur">
       <DateDropdown startDate={startDate} setStartDate={setStartDate} />
 
       <TimeDropdown startDate={startDate} setStartDate={setStartDate}>
