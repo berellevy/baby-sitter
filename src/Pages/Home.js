@@ -1,6 +1,6 @@
 import FindSitterMenu from "../components/FindSitterMenu";
 import Header from "../components/Header";
-import img from "../assets/grass_kid_faded.jpeg"
+import img from "../assets/grass_kid_faded.jpeg";
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
       <div className="container">
         <Header classes="background-blur" />
         <h1 className="home-message">
-          Find <br/>a Sitter
+          Find <br />a Sitter
         </h1>
 
         <FindSitterMenu />
