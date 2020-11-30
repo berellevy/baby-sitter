@@ -1,21 +1,15 @@
-import Home from "./Pages/Home";
 import "./App.css";
-import { Route, Switch } from "react-router";
-import Availabilities from "./Pages/Availabilities";
-import Sitter from "./Pages/Sitter";
-import SignIn from "./Pages/SignIn";
-import Components from "./Pages/Components";
+import { useGoogleAuth } from "./auth/useGoogleLogin";
+import UnauthorizedApp from "./Pages/UnauthorizedApp";
+import AuthorizedApp from "./Pages/AuthorizedApp";
 
 function App() {
+  const { isSignedIn, isInitialized } = useGoogleAuth();
   return (
     <div className="App">
-      <Switch>
-        <Route path="/availabilities" component={Availabilities} />
-        <Route path="/components" component={Components} />
-        <Route path="/sitters/:id" component={Sitter} />
-        <Route path="/login" component={SignIn} />
-        <Route exact path="/" component={Home} />
-      </Switch>
+      {isInitialized && (
+        <>{isSignedIn ? <AuthorizedApp /> : <UnauthorizedApp />}</>
+      )}
     </div>
   );
 }
