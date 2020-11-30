@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "react-datepicker/dist/react-datepicker.css";
-import 'react-dropdown/style.css';
+import "react-dropdown/style.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
+import { GoogleAuthProvider } from "./auth/useGoogleLogin";
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter basename="/">
-      <App />
+      <GoogleAuthProvider>
+        <App />
+      </GoogleAuthProvider>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
