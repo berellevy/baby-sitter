@@ -1,17 +1,24 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import HomeButton from '../assets/Icons/HomeButton';
-import Login from './Login';
-import Logout from './Logout';
+import { useGoogleAuth } from '../auth/useGoogleLogin';
+import LogoutButton from './LogoutButton';
 
 const Header = ({classes}) => {
+  const {isSignedIn} = useGoogleAuth()
+
+  const LogButton = () => {
+    return (
+      isSignedIn
+        ? <LogoutButton />
+        : <Link to="/login" className="header-text">Sitter Sign In</Link>
+    )
+  }
+
   return (
     <div className={`header ${classes}`}>
       <HomeButton />
-      {/* <Link to="/login" className="header-text">Sitter Sign In</Link> */}
-      <Login />
-      <Logout />
+      <LogButton />
     </div>
   );
 }
