@@ -8,7 +8,7 @@ export const formatHM = (date) => {
 };
 
 export const formatDate = (date) => {
-  return moment(date).format("DD-MM-yy")
+  return moment(date).format("DD-MM-yy");
 };
 
 export const DateCustomInput = ({ value, onClick }) => {
@@ -35,17 +35,17 @@ export const roundToQuarterHour = (date) => {
   return new Date(Math.round(date / coeff) * coeff);
 };
 
-export const numToDay = (num) => {
-  return [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Shabbos",
-  ][num];
-};
+export const numToDay = (num) => weekdays()[num];
+
+export const weekdays = () => [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Shabbos",
+];
 
 export const durationToEndTime = (startDate, duration, format = "LT") => {
   return moment(startDate).add(duration, "m").format(format);
