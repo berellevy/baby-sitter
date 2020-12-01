@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useGoogleAuth } from "../auth/useGoogleLogin";
 import Header from "../components/Header";
 
-const SitterPrivateProfile = () => {
+const SitterHomePage = () => {
   const { googleUser } = useGoogleAuth();
   const { profileObj } = googleUser
-  console.log(profileObj);
   return (
     <>
-      <Header classes="background-light-gray" />
+      <Header />
       <h1>{profileObj.name}</h1>
-      <img src={profileObj.imageUrl} alt="" />
+      <Link to="/edit-profile" className="border-box">edit profile</Link>
+      <Link to="/my-schedule" className="border-box">My schedule</Link>
     </>
   );
 };
 
-export default SitterPrivateProfile;
+export default SitterHomePage;
