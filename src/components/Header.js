@@ -16,7 +16,7 @@ const Header = ({classes}) => {
   }
 
   return (
-    <div className={`header ${classes}`}>
+    <div className={`header background-light-gray ${classes}`}>
       <HomeButton />
       <LogButton />
     </div>
