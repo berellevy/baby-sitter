@@ -7,12 +7,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 import { GoogleAuthProvider } from "./auth/useGoogleLogin";
+import { BackendAuthProvider } from "./auth/useBackendLogin";
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter basename="/">
       <GoogleAuthProvider>
-        <App />
+        <BackendAuthProvider>
+          <App />
+        </BackendAuthProvider>
       </GoogleAuthProvider>
     </HashRouter>
   </React.StrictMode>,
