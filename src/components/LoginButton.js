@@ -1,20 +1,17 @@
-import React from 'react';
-import { useHistory } from 'react-router';
-import { useGoogleAuth } from '../auth/useGoogleLogin';
+import React from "react";
+import { useHistory } from "react-router";
+import { useBackendAuth } from "../auth/useBackendLogin";
 
 const LoginButton = () => {
-
-  const { signIn } = useGoogleAuth()
-  const  history  = useHistory()
+  const { login } = useBackendAuth();
+  const history = useHistory();
 
   const handleSignin = () => {
-    signIn()
-    history.push("/")
-  }
+    login();
+    history.push("/");
+  };
 
-  return (
-    <button onClick={handleSignin}>Sign in with Google</button>
-  )
-}
+  return <button onClick={handleSignin}>Sign in with Google</button>;
+};
 
 export default LoginButton;

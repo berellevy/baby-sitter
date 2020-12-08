@@ -1,13 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { useGoogleAuth } from "../auth/useGoogleLogin";
+import { useBackendAuth } from "../auth/useBackendLogin";
 
 const LogoutButton = () => {
   const history = useHistory();
-  const { signOut } = useGoogleAuth();
-  
+
+  const { logout } = useBackendAuth();
+
   const handleSignout = () => {
-    signOut();
+    logout();
     history.push("/");
   };
 
