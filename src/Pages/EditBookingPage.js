@@ -5,6 +5,7 @@ import Header from '../components/Header';
 
 const EditBookingPage = () => {
     const {bookingId} = useParams()
+
   return (
     <>
       <Header />
