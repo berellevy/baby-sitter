@@ -1,19 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import HomeButton from '../assets/Icons/HomeButton';
-import { useGoogleAuth } from '../auth/useGoogleLogin';
-import LogoutButton from './LogoutButton';
+import React from "react";
+import { Link } from "react-router-dom";
+import HomeButton from "../assets/Icons/HomeButton";
+import { useBackendAuth } from "../auth/useBackendLogin";
+import LogoutButton from "./LogoutButton";
 
-const Header = ({classes}) => {
-  const {isSignedIn} = useGoogleAuth()
+const Header = ({ classes }) => {
+  const { isLoggedIn } = useBackendAuth();
 
   const LogButton = () => {
-    return (
-      isSignedIn
-        ? <LogoutButton />
-        : <Link to="/login" className="header-text">Sitter Sign In</Link>
-    )
-  }
+    return isLoggedIn ? (
+      <LogoutButton />
+    ) : (
+      <Link to="/login" className="header-text">
+        Sitter Sign In
+      </Link>
+    );
+  };
 
   return (
     <div className={`header background-light-gray ${classes}`}>
@@ -21,6 +23,6 @@ const Header = ({classes}) => {
       <LogButton />
     </div>
   );
-}
+};
 
 export default Header;
