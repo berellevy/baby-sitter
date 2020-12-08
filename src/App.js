@@ -1,15 +1,22 @@
 import "./App.css";
-import { useGoogleAuth } from "./auth/useGoogleLogin";
 import UnauthorizedApp from "./Pages/UnauthorizedApp";
 import AuthorizedApp from "./Pages/AuthorizedApp";
+import LoadingPage from "./Pages/LoadingPage";
+import { useBackendAuth } from "./auth/useBackendLogin";
 
 function App() {
-  const { isSignedIn, isInitialized } = useGoogleAuth();
+
+  const { isLoggedIn, isInitialized } = useBackendAuth();
+  
   return (
     <div className="App">
-      {isInitialized && (
-        <>{isSignedIn ? <AuthorizedApp /> : <UnauthorizedApp />}</>
-      )}
+      {
+        !isInitialized
+          ? <LoadingPage />
+          : isLoggedIn
+            ? <AuthorizedApp />
+            : <UnauthorizedApp />
+      }
     </div>
   );
 }
