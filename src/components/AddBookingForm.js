@@ -6,8 +6,7 @@ import TimeDropdown from "./TimeDropdown";
 import TwoColContainer from "./TwoColContainer";
 import { BackendDomain, fetcher } from "../utils/urls";
 
-
-const AddBookingForm = ({addAppointment}) => {
+const AddBookingForm = ({ addAppointment }) => {
   const [startDate, setStartDate] = useState(roundToQuarterHour(new Date()));
   const [selection, setSelection] = useState(60);
   const [phone, setPhone] = useState("");
@@ -17,17 +16,16 @@ const AddBookingForm = ({addAppointment}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = BackendDomain("appointments")
+    const url = BackendDomain("appointments");
     const b = {
       startDate,
       selection,
       phone,
       name,
-    }
-    const response = await fetcher({url, m: "POST", b})
-    const data = await response.json()
-    addAppointment(data)
-
+    };
+    const response = await fetcher({ url, m: "POST", b });
+    const data = await response.json();
+    addAppointment(data);
   };
 
   return (
@@ -50,7 +48,7 @@ const AddBookingForm = ({addAppointment}) => {
           placeholder="Phone"
           className="border-box"
           value={phone}
-          onChange={({target}) => setPhone(target.value)}
+          onChange={({ target }) => setPhone(target.value)}
         />
 
         <input
