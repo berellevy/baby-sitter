@@ -4,11 +4,11 @@ import { useGoogleAuth } from "./useGoogleLogin";
 
 const BackendAuthContext = createContext();
 export const checkBackendToken = () => localStorage.getItem("backendToken")
+export const setToken = (token) => {
+  localStorage.setItem("backendToken", token)
+}
 
-export const BackendAuthProvider = ({ children }) => {
-  const setToken = (token) => {
-    localStorage.setItem("backendToken", token)
-  }
+export function BackendAuthProvider  ({ children })  {
   const [isLoggedIn, setIsLoggedIn ] = useState(checkBackendToken())
   const [isInitialized, setInitialized] = useState(true)
   const {signIn} = useGoogleAuth()
@@ -17,6 +17,8 @@ export const BackendAuthProvider = ({ children }) => {
     localStorage.removeItem("backendToken")
     setIsLoggedIn(checkBackendToken())
   }
+
+  
 
   const login = async () => {
     setInitialized(false)
