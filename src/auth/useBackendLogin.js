@@ -17,9 +17,6 @@ export function BackendAuthProvider  ({ children })  {
     localStorage.removeItem("backendToken")
     setIsLoggedIn(checkBackendToken())
   }
-
-  
-
   const login = async () => {
     setInitialized(false)
     const {tokenObj: {id_token} } = await signIn()
