@@ -1,14 +1,13 @@
 import DownArrow from "../assets/Icons/DownArrow";
 import moment from "moment";
 
-export const formatHM = (date) => {
-  const hours = new Date(date).getHours();
-  const minutes = new Date(date).getMinutes();
-  return `${hours}:${minutes}`;
+export const formatHM = (date, format = "LT") => {
+  return moment(date).format(format)
+
 };
 
-export const formatDate = (date) => {
-  return moment(date).format("DD-MM-yy");
+export const formatDate = (date, format = "DD-MM-yy") => {
+  return moment(date).format(format);
 };
 
 export const DateCustomInput = ({ value, onClick }) => {
