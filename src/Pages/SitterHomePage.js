@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddBookingForm from "../components/AddBookingForm";
 import Header from "../components/Header";
 import { BackendDomain } from "../utils/urls";
-import PageProvider from "./PageProvider";
 import DataProvider from "../components/DataProvider";
 import LiUnderline from "../components/LiUnderline";
 import { durationToEndTime, formatDate, formatHM } from "../utils/DateTime";
@@ -11,12 +9,27 @@ import PageDataProvider from "./PageDataProvider";
 import { useFetch } from "../hooks/useFetch";
 
 const SitterHomePage = () => {
-  const [appointments, setAppointments] = useState([]);
-
-  const [sitter, loading, error, setData] = useFetch({
+  const [sitter, loading, error] = useFetch({
     url: BackendDomain("/sitter"),
-  })
+  });
 
+  const [appointments, _, __, setAppointments] = useFetch({
+    url: BackendDomain("appointments"),
+  });
+  const addAppointment = (appt) => setAppointments([...appointments, appt]);
+
+  const sortAppointments = () => {
+    return (
+      appointments &&
+      appointments.sort((a, b) => {
+        return a.start_time < b.start_time
+          ? -1
+          : a.start_time > b.start_time
+          ? 1
+          : 0;
+      })
+    );
+  };
   return (
     <>
       <Header />
@@ -34,52 +47,39 @@ const SitterHomePage = () => {
               <Link to="/my-schedule" className="border-box">
                 My schedule
               </Link>
+
+              <AddBookingForm addAppointment={addAppointment} />
+
+              <p>Current Bookings</p>
+              <DataProvider
+                data={sortAppointments()}
+                render={(appt) => {
+                  return (
+                    <LiUnderline key={appt.id} url={`/bookings/${appt.id}`}>
+                      <p>
+                        {formatDate(appt.start_time, "dddd, MMMM D")}
+                        <br />
+                        {formatHM(appt.start_time)} -{" "}
+                        {durationToEndTime(
+                          appt.start_time,
+                          appt.duration_minutes
+                        )}
+                        <br />
+                        <span style={{ marginRight: "1em" }}>
+                          {appt.contact_name}
+                        </span>
+                        <span>{appt.contact_phone}</span>
+                      </p>
+                    </LiUnderline>
+                  );
+                }}
+              />
             </>
           );
         }}
       />
     </>
   );
-
-  // return (
-  //   <PageProvider
-  //     url={BackendDomain("/sitter")}
-  //     render={(data) => {
-  //       const [appointments, setAppointments] = useState([])
-  //       setAppointments(data.appointments)
-  //       return (
-  //         <>
-  //           <Header />
-  //           <h2>{data.first_name} {data.last_name}</h2>
-  //           <Link to="/edit-profile" className="border-box">
-  //             edit profile
-  //           </Link>
-  //           <Link to="/my-schedule" className="border-box">
-  //             My schedule
-  //           </Link>
-  //           <AddBookingForm addAppointment={addAppointment}/>
-
-  //           <p>Current Bookings</p>
-  //           <DataProvider
-  //             data={appointments}
-  //             render={(appt) => {
-  //               return (
-  //               <LiUnderline
-  //                 key={appt.id}
-  //                 url={`/bookings/${appt.id}`}
-  //               >
-  //                 <p>{formatDate(appt.start_time, "dddd, MMMM D")}</p>
-  //               <p>{formatHM(appt.start_time)} - {durationToEndTime(appt.start_time, appt.duration_minutes)}</p>
-
-  //               </LiUnderline>
-  //               )
-  //             }}
-  //           />
-  //         </>
-  //       );
-  //     }}
-  //   />
-  // );
 };
 
 export default SitterHomePage;
