@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import EditBookingPage from './EditBookingPage';
+import SingleBookingPage from './SingleBookingPage';
 import SitterAvailabilitiesWeekdayPage from './SitterAvailabilitiesWeekdayPage';
 import SitterAvailabilitiesWeeklyPage from './SitterAvailabilitiesWeeklyPage';
 import SitterEditProfilePage from './SitterEditProfilePage';
@@ -16,7 +16,7 @@ const AuthorizedApp = () => {
       <Route exact path="/my-schedule" component={SitterAvailabilitiesWeeklyPage} />
       <Route path="/my-schedule/:weekday" component={SitterAvailabilitiesWeekdayPage} />
 
-      <Route path="/edit-booking/:bookingId" component={EditBookingPage} />
+      <Route path="/bookings/:bookingId" component={SingleBookingPage} />
     </Switch>
 
     </div>
