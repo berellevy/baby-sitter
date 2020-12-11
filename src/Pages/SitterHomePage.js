@@ -9,9 +9,7 @@ import PageDataProvider from "./PageDataProvider";
 import { useFetch } from "../hooks/useFetch";
 
 const SitterHomePage = () => {
-  const [sitter, loading, error] = useFetch({
-    url: BackendDomain("/sitter"),
-  });
+  const [sitter, loading, error] = useFetch({ url: BackendDomain("/sitter") });
 
   const [appointments, _, __, setAppointments] = useFetch({
     url: BackendDomain("appointments"),
