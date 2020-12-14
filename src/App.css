@@ -246,3 +246,7 @@ h1 {
 a.phone-number {
   text-decoration: underline;
 }
+
+.warning {
+  background-color: pink;
+}

@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { BackendDomain } from "../utils/urls";
 import DataProvider from "../components/DataProvider";
 import LiUnderline from "../components/LiUnderline";
+import ApprovalNotice from "../components/ApprovalNotice"
 import { durationToEndTime, formatDate, formatHM } from "../utils/DateTime";
 import PageDataProvider from "./PageDataProvider";
 import { useFetch } from "../hooks/useFetch";
@@ -39,6 +40,7 @@ const SitterHomePage = () => {
               <h2>
                 {data.first_name} {data.last_name}
               </h2>
+              <ApprovalNotice approved={data.approved} />
               <Link to="/edit-profile" className="border-box">
                 edit profile
               </Link>
