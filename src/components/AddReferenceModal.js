@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
+import { BackendDomain, fetcher } from "../utils/urls";
 
-const AddReferenceModal = () => {
+const AddReferenceModal = ({addReference}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
 
   const newSitter = () => ({
     name,
-    phone
-  })
+    phone,
+  });
 
   function openModal() {
     setIsOpen(true);
@@ -26,12 +27,16 @@ const AddReferenceModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // post new data
-    console.log(newSitter());
+    const url = BackendDomain("references");
+    const response = await fetcher({ url, m: "POST", b: newSitter() });
+    const sitter = await response.json()
+    addReference(sitter)
     // wait for success or failure
     // show succes
     // add to references in parent
+
     // clear fields
-    closeModal()
+    closeModal();
   };
   return (
     <>
@@ -44,25 +49,25 @@ const AddReferenceModal = () => {
       >
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">name</label>
-          
+
           <input
             type="text"
             name="name"
             value={name}
-            onChange={({target}) => setName(target.value)}
+            onChange={({ target }) => setName(target.value)}
           />
-          <br/>
+          <br />
 
           <label htmlFor="phone">phone</label>
-          <input 
+          <input
             type="text"
             name="phone"
             value={phone}
-            onChange={({target}) => setPhone(target.value)}
+            onChange={({ target }) => setPhone(target.value)}
           />
-          <br/>
+          <br />
 
-          <input type="submit" value="add"/>
+          <input type="submit" value="add" />
         </form>
         {/* <button onClick={closeModal}>close</button> */}
       </ReactModal>

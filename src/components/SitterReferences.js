@@ -8,9 +8,13 @@ const SitterReferences = () => {
     url: BackendDomain("references"),
   });
 
+  const addReference = (reference) => {
+    setReferences([...references, reference])
+  }
+
   return (
     <>
-      <AddReferenceModal />
+      <AddReferenceModal addReference={addReference}/>
       <DataProvider
         data={references}
         render={(reference) => {
