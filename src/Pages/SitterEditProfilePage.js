@@ -6,6 +6,7 @@ import { BackendDomain, fetcher } from '../utils/urls';
 import PageDataProvider from './PageDataProvider';
 import ApprovalNotice from '../components/ApprovalNotice';
 import EditSitterForm from '../components/EditSitterForm';
+import SitterReferences from '../components/SitterReferences';
 
 const SitterEditProfilePage = () => {
 
@@ -13,12 +14,10 @@ const SitterEditProfilePage = () => {
 
   const updateSitter = async (data) => {
     const url = BackendDomain("update_sitter")
-    // send data to backend
     const response = await fetcher({url, m: "PATCH", b: data})
     const newData = await response.json()
-    // on success update frontend
     setSitter(newData)
-    // on failure log 
+    // TODO: handle failure
 
 
   }
@@ -31,6 +30,11 @@ const SitterEditProfilePage = () => {
           <>
             <ApprovalNotice approved={data.approved} />
             <EditSitterForm data={sitter} updateSitter={updateSitter} />
+            
+            {/* reference container */}
+            <SitterReferences />
+            
+
 
 
           </>
