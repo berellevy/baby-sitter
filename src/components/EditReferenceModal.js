@@ -61,7 +61,7 @@ const EditReferenceModal = ({modalIsOpen, closeModal, data, updateReference}) =>
           />
           <br />
 
-          <input type="submit" value="add" />
+          <input type="submit" value="update" />
         </form>
 
       </ReactModal>
