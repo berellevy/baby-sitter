@@ -7,7 +7,7 @@ const AddReferenceModal = ({addReference}) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const newSitter = () => ({
+  const newReference = () => ({
     name,
     phone,
   });
@@ -28,15 +28,17 @@ const AddReferenceModal = ({addReference}) => {
     e.preventDefault();
     // post new data
     const url = BackendDomain("references");
-    const response = await fetcher({ url, m: "POST", b: newSitter() });
-    const sitter = await response.json()
-    addReference(sitter)
-    // wait for success or failure
+    const response = await fetcher({ url, m: "POST", b: newReference() });
+    const reference = await response.json()
+    // on response success
     // show succes
-    // add to references in parent
-
-    // clear fields
+    addReference(reference)
     closeModal();
+    // clear fields
+
+    // on response failure
+    // show error message
+
   };
   return (
     <>
